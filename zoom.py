@@ -47,7 +47,7 @@ def metagenerator(url):
         print ('%s Target doesn\'t seem to use WordPress' % bad)
 
 def version_vul(version, version_dec):
-    response = requests.get('https://wpvulndb.com/api/v3/wordpresses/%s' % version, headers={'Authorization': 'Token token=pTs1OAhcDTJxOVjava5usL9lGpDHbIanuluU1CpoXzs'}).text
+    response = requests.get('https://wpvulndb.com/api/v3/wordpresses/%s' % version, headers={'Authorization': 'Token token=pTs1OAhcDTJxOVjava5usL9lGpDHbIanuluU1CpoXzs'}, verify=False).text
     jsoned = json.loads(response)
     if not jsoned[version_dec]['vulnerabilities']:
         print ('%s No vulnerabilities found' % bad)
