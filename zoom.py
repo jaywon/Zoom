@@ -29,8 +29,8 @@ parser.add_argument('-u', '--url', help='Target wordpress website', dest='url')
 parser.add_argument('--auto', help='Automatic mode', dest='auto', action='store_true')
 args = parser.parse_args() # Parsing the arguments
 
-print ('''%s  ____                
- /_  / ___  ___  ____ 
+print ('''%s  ____
+ /_  / ___  ___  ____
   / /_/ %s_ \/ _%s \/    \\
  /___/\___%s/\%s___/_/_/_/%s\n''' % (yellow, white, yellow, white, yellow, end))
 
@@ -84,6 +84,8 @@ def source_dig(url, domain):
 
 def dnsdump(domain):
     res = DNSDumpsterAPI(False).search(domain)
+    if not res:
+        return
     for entry in res['dns_records']['host']:
         subdomain = '{domain}'.format(**entry).replace('HTTP:', '').replace('SSH:', '').replace('FTP:', '')
         subdomains.add(subdomain)
